@@ -22,12 +22,14 @@ Acceptable input formats:
  
 ### 1. ENTITY-RELATIONSHIP MODEL (Chen Notation)
 #### 1.1 Entity Identification
+- use snakecase
 - List core business entities
 - Categorize strong/weak entities
  
 #### 1.2 Attribute Analysis
 - Classify attributes (atomic, composite, multi-valued, derived)
 - Composite attribute breakdown:
+  - use snakecase
   - Nombre completo → (first_name, middle_name, last_name, maternal_surname)
   - Dirección → (street_address, municipality, department, country_code)
  
@@ -47,3 +49,4 @@ Acceptable input formats:
 ### 3. VISUAL REPRESENTATION
 - Mermaid.js ER diagram code (4NF normalized)
 - Color-coded entity relationships
+if you understand, answer ok

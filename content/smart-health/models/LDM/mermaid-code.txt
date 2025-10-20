@@ -1,0 +1,66 @@
+erDiagram
+    %% ===============================
+    %% SMART HEALTH - 7 ENTITY MODEL
+    %% ===============================
+
+    patient {
+        int patient_id PK
+        string name
+        date birth_date
+        string sex
+    }
+
+    physician {
+        int physician_id PK
+        string name
+        string license_number
+    }
+
+    appointment {
+        int appointment_id PK
+        date appointment_date
+        string status
+        string reason
+    }
+
+    clinical_record {
+        int clinical_record_id PK
+        string record_type
+        string summary_text
+        datetime created_at
+    }
+
+    insurance_policy {
+        int policy_id PK
+        string policy_number
+        string insurance_company_name
+        date start_date
+        date end_date
+        string status
+    }
+
+    user {
+        int user_id PK
+        string username
+        string role
+    }
+
+    audit_log {
+        int audit_log_id PK
+        int user_id FK
+        string entity_name
+        string action
+        datetime timestamp
+    }
+
+    %% ===============================
+    %% RELATIONSHIPS
+    %% ===============================
+
+    patient ||--o{ appointment : "has"
+    physician ||--o{ appointment : "attends"
+    appointment ||--o{ clinical_record : "generates"
+    patient ||--o{ insurance_policy : "holds"
+    user ||--o{ appointment : "creates"
+    user ||--o{ clinical_record : "registers"
+    user ||--o{ audit_log : "logs"
