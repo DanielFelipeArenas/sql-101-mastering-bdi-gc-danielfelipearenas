@@ -47,3 +47,13 @@ Una vez organizados los datos, puedes ejecutar el pipeline de carga siguiendo la
 - Los archivos en la carpeta `Bulk-Load` son versiones optimizadas para carga masiva de los scripts SQL originales.
 - Los archivos en `FK-Values` contienen valores de claves foráneas utilizados para la generación de datos.
 - No modifiques la estructura de los archivos SQL, ya que esto podría causar errores durante la ejecución del pipeline.
+
+```sql
+ALTER TABLE smarth_health.empleados
+ADD CONSTRAINT departamentos_id_fk 
+FOREIGN KEY (departamento_id) 
+REFERENCES smarth_health.departamentos(id);
+
+ALTER TABLE smarth_health.departamentos
+ADD COLUMN fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+```
