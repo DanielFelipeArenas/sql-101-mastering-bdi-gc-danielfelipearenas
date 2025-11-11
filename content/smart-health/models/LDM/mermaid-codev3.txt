@@ -31,7 +31,7 @@ erDiagram
     %% MÓDULO DE PACIENTES
     %% ============================================
     
-    PATIENT ||--o{ PATIENT_DOCUMENT : "has"
+    PATIENT ||--o{ DOCUMENT_TYPE : "has"
     PATIENT ||--o{ PATIENT_PHONE : "has"
     PATIENT ||--o{ PATIENT_ADDRESS : "lives_at"
     PATIENT ||--o{ PATIENT_ALLERGY : "suffers"
@@ -47,17 +47,10 @@ erDiagram
         date birth_date "NOT NULL"
         char gender "CHECK(M,F,O), NOT NULL"
         varchar email "UNIQUE, NULL"
-        timestamp registration_date "DEFAULT CURRENT_TIMESTAMP"
-        boolean active "DEFAULT TRUE"
-    }
-    
-    PATIENT_DOCUMENT {
-        int patient_document_id PK
-        int patient_id FK "NOT NULL"
         int document_type_id FK "NOT NULL"
         varchar document_number "NOT NULL"
-        char issuing_country "ISO-3166, NOT NULL"
-        date issue_date "NULL"
+        timestamp registration_date "DEFAULT CURRENT_TIMESTAMP"
+        boolean active "DEFAULT TRUE"
     }
     
     PATIENT_PHONE {
@@ -192,8 +185,6 @@ erDiagram
     %% ============================================
     %% MÓDULO DE CATÁLOGOS
     %% ============================================
-    
-    DOCUMENT_TYPE ||--o{ PATIENT_DOCUMENT : "classifies"
     SPECIALTY ||--o{ DOCTOR_SPECIALTY : "certifies"
     DIAGNOSIS ||--o{ RECORD_DIAGNOSIS : "codes"
     DIAGNOSIS ||--o{ MEDICAL_RECORD : "primary"
